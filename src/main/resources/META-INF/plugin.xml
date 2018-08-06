@@ -18,9 +18,9 @@
 
     <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
          on how to target different products -->
-    <!-- uncomment to enable plugin in all products
+    <!--uncomment to enable plugin in all products-->
     <depends>com.intellij.modules.lang</depends>
-    -->
+    <!--<depends>Java</depends>-->
 
     <extensions defaultExtensionNs="com.intellij">
     </extensions>
@@ -35,6 +35,9 @@
             <action id="Myplugin.Textboxes" class="TextBoxes" text="Text _Boxes" description="A test menu item" />
             <!--<action id="Myplugin.Dialogs" class="MyShowDialog" text="Show _Dialog" description="A test menu item" />-->
         </group>
+        <action id="yuricfurusho.saveInstances" class="saveInstancesClass" text="saveInstances">
+            <add-to-group group-id="EditorPopupMenu1.FindRefactor" anchor="last"/>
+        </action>
     </actions>
 
 </idea-plugin>
