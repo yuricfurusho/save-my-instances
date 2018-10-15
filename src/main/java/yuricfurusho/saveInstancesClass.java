@@ -1,3 +1,5 @@
+package yuricfurusho;
+
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.CommonDataKeys;
@@ -51,15 +53,15 @@ public class saveInstancesClass extends AnAction {
         saveInstances();
 
         // Log
-        for (PsiField psiField : psiClassFields) {
-            mInfoBuilder.append(psiField.getName()).append("\n");
-        }
-        Messages.showMessageDialog(e.getProject(), mInfoBuilder.toString(), "PSI Info", null);
+//        for (PsiField psiField : psiClassFields) {
+//            mInfoBuilder.append(psiField.getName()).append("\n");
+//        }
+//        Messages.showMessageDialog(e.getProject(), mInfoBuilder.toString(), "PSI Info", null);
     }
 
     private void saveInstances() {
         /*7 Criar método saveInstance caso não exista*/
-        mOnSaveInstanceStateMethod = (PsiMethod) mElementFactory.createMethodFromText("@Override public void onSaveInstanceState(@NonNull Bundle outState) {}", null);
+        mOnSaveInstanceStateMethod = (PsiMethod) mElementFactory.createMethodFromText("@Override public void onSaveInstanceState(@NonNull Bundle outState) {super.onSaveInstanceState(outState);}", null);
         mPsiOnSaveInstanceCodeBlock = PsiTreeUtil.findChildOfType(mOnSaveInstanceStateMethod, PsiCodeBlock.class);
 
 

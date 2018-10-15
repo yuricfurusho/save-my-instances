@@ -26,16 +26,16 @@
     </extensions>
 
     <actions>
-        <group id="MyPlugin.SampleMenu" text="Greeting" description="Greeting menu">
-            <add-to-group group-id="MainMenu" anchor="last"/>
-            <action id="Myplugin.Textboxes" class="HelloAction" text="Hello" description="Says hello"/>
-        </group>
-        <group id="MyPlugin.SampleMenu2" text="_Sample Menu" description="Sample menu">
-            <add-to-group group-id="MainMenu" anchor="last"  />
-            <action id="Myplugin.Textboxes" class="TextBoxes" text="Text _Boxes" description="A test menu item" />
-            <!--<action id="Myplugin.Dialogs" class="MyShowDialog" text="Show _Dialog" description="A test menu item" />-->
-        </group>
-        <action id="yuricfurusho.saveInstances" class="saveInstancesClass" text="saveInstances">
+        <!--<group id="MyPlugin.SampleMenu" text="Greeting" description="Greeting menu">-->
+            <!--<add-to-group group-id="MainMenu" anchor="last"/>-->
+            <!--<action id="Myplugin.Textboxes" class="yuricfurusho.HelloAction" text="Hello" description="Says hello"/>-->
+        <!--</group>-->
+        <!--<group id="MyPlugin.SampleMenu2" text="_Sample Menu" description="Sample menu">-->
+            <!--<add-to-group group-id="MainMenu" anchor="last"  />-->
+            <!--<action id="Myplugin.Textboxes" class="yuricfurusho.TextBoxes" text="Text _Boxes" description="A test menu item" />-->
+            <!--&lt;!&ndash;<action id="Myplugin.Dialogs" class="MyShowDialog" text="Show _Dialog" description="A test menu item" />&ndash;&gt;-->
+        <!--</group>-->
+        <action id="yuricfurusho.saveInstances" class="yuricfurusho.saveInstancesClass" text="saveInstances">
             <add-to-group group-id="EditorPopupMenu1.FindRefactor" anchor="last"/>
         </action>
     </actions>
