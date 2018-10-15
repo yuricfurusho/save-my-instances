@@ -1,6 +1,6 @@
 <idea-plugin>
-    <id>org.jetbrains</id>
-    <name>my_plugin</name>
+    <id>com.yuricfurusho</id>
+    <name>save-my-instances</name>
     <version>0.0.1</version>
     <vendor email="dummy" url="dummy">dummy</vendor>
 
