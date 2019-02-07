@@ -1,0 +1,76 @@
+Index: src/main/resources/META-INF/plugin.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><idea-plugin>\n    <id>com.yuricfurusho.save-my-instances</id>\n    <name>Plugin display name here</name>\n    <vendor email=\"support@yourcompany.com\" url=\"http://www.yourcompany.com\">YourCompany</vendor>\n\n    <description><![CDATA[\n    Enter short description for your plugin here.<br>\n    <em>most HTML tags may be used</em>\n    ]]></description>\n\n    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html\n         on how to target different products -->\n    <!-- uncomment to enable plugin in all products\n    <depends>com.intellij.modules.lang</depends>\n    -->\n\n    <extensions defaultExtensionNs=\"com.intellij\">\n        <!-- Add your extensions here -->\n    </extensions>\n\n    <actions>\n        <!-- Add your actions here -->\n    </actions>\n</idea-plugin>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/resources/META-INF/plugin.xml	(revision 9c6ad4a85eeb31556be26831151e0ed2d10b4ec4)
++++ src/main/resources/META-INF/plugin.xml	(date 1533243537014)
+@@ -1,13 +1,21 @@
+ <idea-plugin>
+-    <id>com.yuricfurusho.save-my-instances</id>
+-    <name>Plugin display name here</name>
+-    <vendor email="support@yourcompany.com" url="http://www.yourcompany.com">YourCompany</vendor>
++    <id>org.jetbrains</id>
++    <name>my_plugin</name>
++    <version>0.0.1</version>
++    <vendor email="dummy" url="dummy">dummy</vendor>
+ 
+     <description><![CDATA[
+-    Enter short description for your plugin here.<br>
+-    <em>most HTML tags may be used</em>
++      Sample plugin.<br>
+     ]]></description>
+ 
++    <change-notes><![CDATA[
++      Release 0.0.1: Initial release.<br>
++    ]]>
++    </change-notes>
++
++    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
++    <idea-version since-build="162"/>
++
+     <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+          on how to target different products -->
+     <!-- uncomment to enable plugin in all products
+@@ -15,10 +23,13 @@
+     -->
+ 
+     <extensions defaultExtensionNs="com.intellij">
+-        <!-- Add your extensions here -->
+     </extensions>
+ 
+     <actions>
+-        <!-- Add your actions here -->
++        <group id="MyPlugin.SampleMenu" text="Greeting" description="Greeting menu">
++            <add-to-group group-id="MainMenu" anchor="last"/>
++            <action id="Myplugin.Textboxes" class="HelloAction" text="Hello" description="Says hello"/>
++        </group>
+     </actions>
++
+ </idea-plugin>
+\ No newline at end of file
+Index: src/main/java/HelloAction.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/HelloAction.java	(date 1533243509540)
++++ src/main/java/HelloAction.java	(date 1533243509540)
+@@ -0,0 +1,14 @@
++import com.intellij.openapi.actionSystem.*;
++import com.intellij.openapi.project.Project;
++import com.intellij.openapi.ui.Messages;
++
++public class HelloAction extends AnAction {
++    public HelloAction() {
++        super("Hello");
++    }
++
++    public void actionPerformed(AnActionEvent event) {
++        Project project = event.getProject();
++        Messages.showMessageDialog(project, "Hello world!", "Greeting", Messages.getInformationIcon());
++    }
++}
+\ No newline at end of file

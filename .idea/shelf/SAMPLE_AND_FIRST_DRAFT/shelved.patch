@@ -1,0 +1,74 @@
+Index: src/main/resources/META-INF/plugin.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><idea-plugin>\r\n    <id>org.jetbrains</id>\r\n    <name>my_plugin</name>\r\n    <version>0.0.1</version>\r\n    <vendor email=\"dummy\" url=\"dummy\">dummy</vendor>\r\n\r\n    <description><![CDATA[\r\n      Sample plugin.<br>\r\n    ]]></description>\r\n\r\n    <change-notes><![CDATA[\r\n      Release 0.0.1: Initial release.<br>\r\n    ]]>\r\n    </change-notes>\r\n\r\n    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->\r\n    <idea-version since-build=\"162\"/>\r\n\r\n    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html\r\n         on how to target different products -->\r\n    <!-- uncomment to enable plugin in all products\r\n    <depends>com.intellij.modules.lang</depends>\r\n    -->\r\n\r\n    <extensions defaultExtensionNs=\"com.intellij\">\r\n    </extensions>\r\n\r\n    <actions>\r\n        <group id=\"MyPlugin.SampleMenu\" text=\"Greeting\" description=\"Greeting menu\">\r\n            <add-to-group group-id=\"MainMenu\" anchor=\"last\"/>\r\n            <action id=\"Myplugin.Textboxes\" class=\"HelloAction\" text=\"Hello\" description=\"Says hello\"/>\r\n        </group>\r\n    </actions>\r\n\r\n</idea-plugin>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/resources/META-INF/plugin.xml	(revision 63180b41fda329d84e62ff319e6b242ff8a932f1)
++++ src/main/resources/META-INF/plugin.xml	(date 1533329802759)
+@@ -30,6 +30,14 @@
+             <add-to-group group-id="MainMenu" anchor="last"/>
+             <action id="Myplugin.Textboxes" class="HelloAction" text="Hello" description="Says hello"/>
+         </group>
++        <group id="MyPlugin.SampleMenu2" text="_Sample Menu" description="Sample menu">
++            <add-to-group group-id="MainMenu" anchor="last"  />
++            <action id="Myplugin.Textboxes" class="TextBoxes" text="Text _Boxes" description="A test menu item" />
++            <!--<action id="Myplugin.Dialogs" class="MyShowDialog" text="Show _Dialog" description="A test menu item" />-->
++        </group>
++        <action id="yuricfurusho.saveInstances" class="saveInstancesClass" text="saveInstances">
++            <add-to-group group-id="EditorPopupMenu1.FindRefactor" anchor="last"/>
++        </action>
+     </actions>
+ 
+ </idea-plugin>
+\ No newline at end of file
+Index: src/main/java/saveInstancesClass.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/saveInstancesClass.java	(date 1533329802786)
++++ src/main/java/saveInstancesClass.java	(date 1533329802786)
+@@ -0,0 +1,10 @@
++import com.intellij.openapi.actionSystem.AnAction;
++import com.intellij.openapi.actionSystem.AnActionEvent;
++
++public class saveInstancesClass extends AnAction {
++
++    @Override
++    public void actionPerformed(AnActionEvent e) {
++        // TODO: insert action logic here
++    }
++}
+Index: src/main/java/TextBoxes.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/TextBoxes.java	(date 1533329470024)
++++ src/main/java/TextBoxes.java	(date 1533329470024)
+@@ -0,0 +1,23 @@
++import com.intellij.openapi.actionSystem.AnAction;
++import com.intellij.openapi.actionSystem.AnActionEvent;
++import com.intellij.openapi.actionSystem.PlatformDataKeys;
++import com.intellij.openapi.project.Project;
++import com.intellij.openapi.ui.Messages;
++
++public class TextBoxes  extends AnAction {
++    // If you register the action from Java code, this constructor is used to set the menu item name
++    // (optionally, you can specify the menu description and an icon to display next to the menu item).
++    // You can omit this constructor when registering the action in the plugin.xml file.
++    public TextBoxes() {
++        // Set the menu item name.
++        super("Text _Boxes");
++        // Set the menu item name, description and icon.
++        // super("Text _Boxes","Item description",IconLoader.getIcon("/Mypackage/icon.png"));
++    }
++
++    public void actionPerformed(AnActionEvent event) {
++        Project project = event.getData(PlatformDataKeys.PROJECT);
++        String txt= Messages.showInputDialog(project, "What is your name?", "Input your name", Messages.getQuestionIcon());
++        Messages.showMessageDialog(project, "Hello, " + txt + "!\n I am glad to see you.", "Information", Messages.getInformationIcon());
++    }
++}
